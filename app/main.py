@@ -3,19 +3,13 @@ from typing import Optional
 
 from fastapi import FastAPI
 from pydantic import BaseModel
+from db.database import engine
+from models import models
 
 app = FastAPI()
 
 
-class Post(BaseModel):
-    """The post model
-
-    Args:
-        BaseModel (Class): The parent class
-    """
-    title: str
-    content: str
-    published: Optional[bool] = True
+models.Base.metadata.create_all(bind=engine)
 
 
 @app.get("/")
