@@ -30,4 +30,6 @@ async def test_posts(_db: Session = Depends(get_db)) -> dict:
     Returns:
         dict: A message to show successful execution
     """
-    return {"Message": "MYSQL BITCHES!!!"}
+    _retrieved_posts = _db.query(models.Post).all()
+
+    return {"Message": _retrieved_posts}
