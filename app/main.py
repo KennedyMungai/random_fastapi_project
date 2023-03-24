@@ -23,7 +23,7 @@ async def root() -> dict:
 
 
 @app.post("/posts", status_code=status.HTTP_201_CREATED)
-async def create_post(_post: CreatePost, _db: Session = Depends(get_db)) -> CreatePost:
+async def create_post(_post: CreatePost, _db: Session = Depends(get_db)):
     """The create post endpoint
 
     Args:
@@ -33,6 +33,10 @@ async def create_post(_post: CreatePost, _db: Session = Depends(get_db)) -> Crea
     Returns:
         CreatePost: The created post
     """
-    _new_post = Post(_post.title, _post.content, _post.published)
+    _new_post = Post(id=_post.id, title=_post.title,
+                     content=_post.content, published=_post.published)
 
-    return _new_post
+    _db.add(_new_post)
+    _db.commit()
+
+    return {"Message": "Some dumb message"}
