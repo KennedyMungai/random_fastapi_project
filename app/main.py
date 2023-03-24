@@ -42,7 +42,14 @@ async def create_post(_post: CreatePost, _db: Session = Depends(get_db)) -> dict
     return {"Message": _new_post}
 
 
+@app.get("/posts/{_id}")
+async def retrieve_one_post(_id: int, _db: Session = Depends(get_db)) -> dict:
+    _post = _db.query(Post).filter(Post.id == _id).first()
+
+    return {"Post": _post}
+
+
 @app.get("/posts", status_code=status.HTTP_200_OK)
 async def retrieve_all_posts(_db: Session = Depends(get_db)):
-    _all_posts = _db(Post).all()
+    _all_posts = _db.query(Post).all()
     return _all_posts
