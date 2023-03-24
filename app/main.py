@@ -60,5 +60,13 @@ async def retrieve_one_post(_id: int, _db: Session = Depends(get_db)) -> dict:
 
 @app.get("/posts", status_code=status.HTTP_200_OK)
 async def retrieve_all_posts(_db: Session = Depends(get_db)):
+    """An endpoint to retrieve all the posts in the database
+
+    Args:
+        _db (Session, optional): The database session. Defaults to Depends(get_db).
+
+    Returns:
+        List: A list of all posts
+    """
     _all_posts = _db.query(Post).all()
     return _all_posts
