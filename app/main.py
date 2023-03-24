@@ -1,4 +1,5 @@
 """The main file for the project"""
+from typing import List
 from fastapi import Depends, FastAPI, HTTPException, status
 from sqlalchemy.orm import Session
 
@@ -64,7 +65,7 @@ async def retrieve_one_post(_id: int, _db: Session = Depends(get_db)) -> dict:
     return _post
 
 
-@app.get("/posts", status_code=status.HTTP_200_OK)
+@app.get("/posts", status_code=status.HTTP_200_OK, response_model=List[PostResponse])
 async def retrieve_all_posts(_db: Session = Depends(get_db)):
     """An endpoint to retrieve all the posts in the database
 
