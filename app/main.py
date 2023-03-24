@@ -1,6 +1,5 @@
 """The main file for the project"""
 from fastapi import FastAPI
-from pydantic import BaseModel
 
 from db.database import SessionLocal, engine
 from models import models
