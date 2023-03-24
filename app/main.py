@@ -17,13 +17,3 @@ async def root() -> dict:
         dict: Returns a message to show successful execution
     """
     return {"message": "The api works"}
-
-
-@app.post("/createposts")
-async def create_posts(payload) -> dict:
-    """A dummy post creator endpoint
-
-    Returns:
-        dict: A message to show successful code execution
-    """
-    return {"new post": payload}
