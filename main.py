@@ -1,5 +1,6 @@
 """The main file for the project"""
 from fastapi import Body, FastAPI
+from pydantic import BaseModel
 
 
 app = FastAPI()
