@@ -21,16 +21,6 @@ async def root() -> dict:
     return {"message": "The api works"}
 
 
-@app.get("/sqlalchemy")
-async def test_posts(_db: Session = Depends(get_db)) -> dict:
-    """A dummy endpoint to check for connection with the database
-
-    Args:
-        _db (Session, optional): The database session. Defaults to Depends(get_db).
-
-    Returns:
-        dict: A message to show successful execution
-    """
-    _retrieved_posts = _db.query(Post).all()
-
-    return {"Message": _retrieved_posts}
+@app.post("/posts")
+async def create_post(_post: Post, _db: Session = Depends(get_db)):
+    pass
