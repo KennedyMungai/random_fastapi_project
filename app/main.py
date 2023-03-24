@@ -1,7 +1,7 @@
 """The main file for the project"""
 from fastapi import FastAPI
 
-from db.database import SessionLocal, engine, get_db
+from db.database import engine, get_db
 from models import models
 
 models.Base.metadata.create_all(bind=engine)
