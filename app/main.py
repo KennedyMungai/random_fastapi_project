@@ -5,7 +5,7 @@ from sqlalchemy.orm import Session
 from db.database import engine, get_db
 from models import models
 from models.models import Post
-from schemas.PostSchemas import PostCreate
+from schemas.PostSchemas import PostCreate, PostResponse
 
 models.Base.metadata.create_all(bind=engine)
 
@@ -22,7 +22,7 @@ async def root() -> dict:
     return {"message": "The api works"}
 
 
-@app.post("/posts", status_code=status.HTTP_201_CREATED)
+@app.post("/posts", status_code=status.HTTP_201_CREATED, response_model=PostResponse)
 async def create_post(_post: PostCreate, _db: Session = Depends(get_db)) -> dict:
     """The create post endpoint
 
