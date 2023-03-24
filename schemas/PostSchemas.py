@@ -30,3 +30,7 @@ class PostResponse(BaseModel):
     title: str
     content: str
     published: bool
+
+    class Config:
+        """The configuration for the PostResponse class"""
+        orm_model = True
