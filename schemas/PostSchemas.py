@@ -19,3 +19,14 @@ class PostCreate(PostBase):
     Args:
         BaseModel (Class): The parent class for the CreatePost class
     """
+
+
+class PostResponse(BaseModel):
+    """The template for the Post response data
+
+    Args:
+        BaseModel (Class): The parent class
+    """
+    title: str
+    content: str
+    published: bool
