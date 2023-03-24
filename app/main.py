@@ -1,5 +1,5 @@
 """The main file for the project"""
-from fastapi import Depends, FastAPI
+from fastapi import Depends, FastAPI, status
 from sqlalchemy.orm import Session
 
 from db.database import engine, get_db
@@ -21,6 +21,6 @@ async def root() -> dict:
     return {"message": "The api works"}
 
 
-@app.post("/posts")
+@app.post("/posts", status_code=status.HTTP_201_CREATED)
 async def create_post(_post: Post, _db: Session = Depends(get_db)):
     pass
