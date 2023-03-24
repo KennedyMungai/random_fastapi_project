@@ -38,11 +38,12 @@ async def create_post(_post: CreatePost, _db: Session = Depends(get_db)):
 
     _db.add(_new_post)
     _db.commit()
+    _db.refresh(_new_post)
 
-    return {"Message": "Some dumb message"}
+    return {"Message": _new_post}
 
 
 @app.get("/posts", status_code=status.HTTP_200_OK)
-async def retrieve_all_posts(_db: Session = Depends(get_db)) -> dict:
+async def retrieve_all_posts(_db: Session = Depends(get_db)):
     _all_posts = _db(Post).all()
     return _all_posts
