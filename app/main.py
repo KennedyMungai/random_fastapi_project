@@ -33,8 +33,7 @@ async def create_post(_post: CreatePost, _db: Session = Depends(get_db)) -> dict
     Returns:
         dict: A dictionary containing the created post
     """
-    _new_post = Post(title=_post.title,
-                     content=_post.content, published=_post.published)
+    _new_post = Post(**_post.dict())
 
     _db.add(_new_post)
     _db.commit()
