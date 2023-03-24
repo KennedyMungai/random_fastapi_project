@@ -19,4 +19,3 @@ class PostCreate(PostBase):
     Args:
         BaseModel (Class): The parent class for the CreatePost class
     """
-    pass
