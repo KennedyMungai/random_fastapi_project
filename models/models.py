@@ -26,3 +26,4 @@ class User(Base):
     id = Column(Integer, primary_key=True, autoincrement=True)
     email = Column(String(255), nullable=False, unique=True)
     password = Column(String(255), nullable=False)
+    created_at = Column(TIMESTAMP(timezone=True), default=datetime.utcnow())
