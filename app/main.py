@@ -1,5 +1,5 @@
 """The main file for the project"""
-from fastapi import Depends, FastAPI, status
+from fastapi import Depends, FastAPI, HTTPException, status
 from sqlalchemy.orm import Session
 
 from db.database import engine, get_db
@@ -54,6 +54,12 @@ async def retrieve_one_post(_id: int, _db: Session = Depends(get_db)) -> dict:
         dict: A dictionary containing the retrieved post
     """
     _post = _db.query(Post).filter(Post.id == _id).first()
+
+    if not _post:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=f"A post with id {_id} was not found"
+        )
 
     return {"Post": _post}
 
