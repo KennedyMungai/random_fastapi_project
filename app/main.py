@@ -39,7 +39,7 @@ async def create_post(_post: CreatePost, _db: Session = Depends(get_db)) -> dict
     _db.commit()
     _db.refresh(_new_post)
 
-    return {"Message": _new_post}
+    return _new_post
 
 
 @app.get("/posts/{_id}")
@@ -61,7 +61,7 @@ async def retrieve_one_post(_id: int, _db: Session = Depends(get_db)) -> dict:
             detail=f"A post with id {_id} was not found"
         )
 
-    return {"Post": _post}
+    return _post
 
 
 @app.get("/posts", status_code=status.HTTP_200_OK)
@@ -130,4 +130,4 @@ async def update_post(_id: int, _new_post: CreatePost, _db: Session = Depends(ge
 
     _db.commit()
 
-    return {"Message": _post_query.first()}
+    return _post_query.first()
