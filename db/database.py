@@ -23,3 +23,17 @@ SessionLocal = sessionmaker(
 )
 
 Base = declarative_base()
+
+
+def get_db():
+    """The get_db dependency
+
+    Yields:
+        _db: A database conn instance
+    """
+    _db = SessionLocal()
+
+    try:
+        yield _db
+    finally:
+        _db.close()
