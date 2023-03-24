@@ -99,3 +99,33 @@ async def delete_post(_id: int, _db: Session = Depends(get_db)):
 
     _db.delete(_post)
     _db.commit()
+
+
+@app.put("/posts/{_id}", status_code=status.HTTP_200_OK)
+async def update_post(_id: int, _new_post: CreatePost, _db: Session = Depends(get_db)):
+    """The update endpoint for the Post
+
+    Args:
+        _id (int): The id of the Post
+        _new_post (CreatePost): The update for the post
+        _db (Session, optional): The database session. Defaults to Depends(get_db).
+
+    Raises:
+        HTTPException: A 404 is raised if the post is not found
+
+    Returns:
+        dict: A dictionary cotining a success message
+    """
+    _post = _db.query(Post).filter(Post.id == _id).first()
+
+    if not _post:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=f"The post with id of {_id} was not found"
+        )
+
+    _post = Post(**_new_post.dict())
+
+    _db.commit()
+
+    return {"Message": "Post Updated"}
