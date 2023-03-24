@@ -15,6 +15,11 @@ app = FastAPI()
 
 
 def get_db():
+    """The get_db dependency
+
+    Yields:
+        _db: A database conn instance
+    """
     _db = SessionLocal()
 
     try:
