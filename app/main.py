@@ -132,3 +132,8 @@ async def update_post(_id: int, _new_post: PostCreate, _db: Session = Depends(ge
     _db.commit()
 
     return _post_query.first()
+
+
+@app.post("/users", status_code=status.HTTP_201_CREATED)
+async def create_user(_new_user: UserBase, _db: Session = Depends(get_db)):
+    pass
