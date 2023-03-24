@@ -1,6 +1,5 @@
 """The database connection file"""
 import os
-from os.path import dirname, join
 
 from dotenv import load_dotenv, find_dotenv
 from sqlalchemy import create_engine
