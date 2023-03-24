@@ -1,9 +1,9 @@
 """The main file for the project"""
 from fastapi import Depends, FastAPI
+from sqlalchemy.orm import Session
 
 from db.database import engine, get_db
 from models import models
-from sqlalchemy.orm import Session
 
 models.Base.metadata.create_all(bind=engine)
 
