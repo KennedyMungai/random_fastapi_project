@@ -22,4 +22,4 @@ async def create_posts(payload: dict = Body(...)) -> dict:
     Returns:
         dict: A message to show successful code execution
     """
-    return {"new post": f"{payload}"}
+    return {"new post": payload}
