@@ -23,15 +23,12 @@ class PostCreate(PostBase):
     """
 
 
-class PostResponse(BaseModel):
+class PostResponse(PostBase):
     """The template for the Post response data
 
     Args:
         BaseModel (Class): The parent class
     """
-    title: str
-    content: str
-    published: bool
     created_at: datetime
 
     class Config:
