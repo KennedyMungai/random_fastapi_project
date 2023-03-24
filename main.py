@@ -1,5 +1,5 @@
 """The main file for the project"""
-from fastapi import FastAPI
+from fastapi import Body, FastAPI
 
 
 app = FastAPI()
@@ -16,7 +16,7 @@ async def root() -> dict:
 
 
 @app.post("/createposts")
-async def create_posts() -> dict:
+async def create_posts(payload: dict = Body(...)) -> dict:
     """A dummy post creator endpoint
 
     Returns:
