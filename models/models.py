@@ -12,5 +12,5 @@ class Post(Base):
     id = Column(Integer, primary_key=True, nullable=False)
     title = Column(String(255), nullable=False)
     content = Column(String(255), nullable=False)
-    published = Column(Boolean, default=True, nullable=False)
+    published = Column(Boolean, default=1, nullable=False)
     created_at = Column(TIMESTAMP(timezone=True), default=datetime.utcnow())
