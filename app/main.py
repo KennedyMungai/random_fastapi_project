@@ -24,4 +24,6 @@ async def root() -> dict:
 
 @app.post("/posts", status_code=status.HTTP_201_CREATED)
 async def create_post(_post: CreatePost, _db: Session = Depends(get_db)):
-    pass
+    _new_post = Post(_post.title, _post.content, _post.published)
+
+    return _new_post
