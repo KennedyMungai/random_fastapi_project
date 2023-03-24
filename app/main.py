@@ -102,7 +102,7 @@ async def delete_post(_id: int, _db: Session = Depends(get_db)):
     _db.commit()
 
 
-@app.put("/posts/{_id}", status_code=status.HTTP_200_OK)
+@app.put("/posts/{_id}", status_code=status.HTTP_200_OK, response_model=PostResponse)
 async def update_post(_id: int, _new_post: PostCreate, _db: Session = Depends(get_db)):
     """The update endpoint for the Post
 
