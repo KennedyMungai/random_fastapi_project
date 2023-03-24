@@ -7,10 +7,20 @@ from pydantic import BaseModel
 from db.database import engine
 from models import models
 
+models.Base.metadata.create_all(bind=engine)
+
 app = FastAPI()
 
+# Dependency
 
-models.Base.metadata.create_all(bind=engine)
+
+def get_db():
+    db = SessionLocal()
+
+    try:
+        yield db
+    finally:
+        db.close()
 
 
 @app.get("/")
