@@ -27,7 +27,7 @@ async def root() -> dict:
 
 
 @app.post("/createposts")
-async def create_posts(payload: dict = Body(...)) -> dict:
+async def create_posts(payload: Post = Body(...)) -> dict:
     """A dummy post creator endpoint
 
     Returns:
