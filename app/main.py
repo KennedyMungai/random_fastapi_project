@@ -1,26 +1,12 @@
 """The main file for the project"""
 from fastapi import FastAPI
 
-from db.database import SessionLocal, engine
+from db.database import SessionLocal, engine, get_db
 from models import models
 
 models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
-
-
-def get_db():
-    """The get_db dependency
-
-    Yields:
-        _db: A database conn instance
-    """
-    _db = SessionLocal()
-
-    try:
-        yield _db
-    finally:
-        _db.close()
 
 
 @app.get("/")
