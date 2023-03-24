@@ -5,7 +5,7 @@ from sqlalchemy.orm import Session
 from db.database import engine, get_db
 from models import models
 from models.models import Post
-from schemas.PostSchemas import CreatePost
+from schemas.PostSchemas import PostCreate
 
 models.Base.metadata.create_all(bind=engine)
 
@@ -23,7 +23,7 @@ async def root() -> dict:
 
 
 @app.post("/posts", status_code=status.HTTP_201_CREATED)
-async def create_post(_post: CreatePost, _db: Session = Depends(get_db)) -> dict:
+async def create_post(_post: PostCreate, _db: Session = Depends(get_db)) -> dict:
     """The create post endpoint
 
     Args:
@@ -102,7 +102,7 @@ async def delete_post(_id: int, _db: Session = Depends(get_db)):
 
 
 @app.put("/posts/{_id}", status_code=status.HTTP_200_OK)
-async def update_post(_id: int, _new_post: CreatePost, _db: Session = Depends(get_db)):
+async def update_post(_id: int, _new_post: PostCreate, _db: Session = Depends(get_db)):
     """The update endpoint for the Post
 
     Args:
