@@ -1,5 +1,6 @@
 """Created the file containing the Posts Schemas"""
 from pydantic import BaseModel
+from datetime import datetime
 
 
 class PostBase(BaseModel):
@@ -30,6 +31,7 @@ class PostResponse(BaseModel):
     title: str
     content: str
     published: bool
+    created_at: datetime
 
     class Config:
         """The configuration for the PostResponse class"""
