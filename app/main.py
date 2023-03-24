@@ -44,6 +44,15 @@ async def create_post(_post: CreatePost, _db: Session = Depends(get_db)) -> dict
 
 @app.get("/posts/{_id}")
 async def retrieve_one_post(_id: int, _db: Session = Depends(get_db)) -> dict:
+    """The endpoint to retrieve one post by its Id
+
+    Args:
+        _id (int): The id of the post
+        _db (Session, optional): The database session. Defaults to Depends(get_db).
+
+    Returns:
+        dict: A dictionary containing the retrieved post
+    """
     _post = _db.query(Post).filter(Post.id == _id).first()
 
     return {"Post": _post}
