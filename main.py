@@ -1,6 +1,7 @@
 """The main file for the project"""
 from fastapi import Body, FastAPI
 from pydantic import BaseModel
+from typing import Optional
 
 
 app = FastAPI()
@@ -14,6 +15,7 @@ class Post(BaseModel):
     """
     title: str
     content: str
+    published: Optional[bool] = True
 
 
 @app.get("/")
