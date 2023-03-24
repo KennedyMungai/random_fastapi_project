@@ -116,7 +116,9 @@ async def update_post(_id: int, _new_post: CreatePost, _db: Session = Depends(ge
     Returns:
         dict: A dictionary cotining a success message
     """
-    _post = _db.query(Post).filter(Post.id == _id).first()
+    _post_query = _db.query(Post).filter(Post.id == _id)
+
+    _post = _post_query.first()
 
     if not _post:
         raise HTTPException(
@@ -124,7 +126,7 @@ async def update_post(_id: int, _new_post: CreatePost, _db: Session = Depends(ge
             detail=f"The post with id of {_id} was not found"
         )
 
-    _post = Post(**_new_post.dict())
+    _post_query.update(_new_post.dict())
 
     _db.commit()
 
