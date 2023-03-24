@@ -4,7 +4,7 @@ from typing import Optional
 from fastapi import FastAPI
 from pydantic import BaseModel
 
-from db.database import engine
+from db.database import SessionLocal, engine
 from models import models
 
 models.Base.metadata.create_all(bind=engine)
