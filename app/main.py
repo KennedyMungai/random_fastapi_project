@@ -76,3 +76,26 @@ async def retrieve_all_posts(_db: Session = Depends(get_db)):
     """
     _all_posts = _db.query(Post).all()
     return _all_posts
+
+
+@app.delete("/posts/{_id}", status_code=status.HTTP_204_NO_CONTENT)
+async def delete_post(_id: int, _db: Session = Depends(get_db)):
+    """The delet Post endpoint
+
+    Args:
+        _id (int): The id of the Post
+        _db (Session, optional): The database session. Defaults to Depends(get_db).
+
+    Raises:
+        HTTPException: A 404 is returned if Post Id is not found
+    """
+    _post = _db.query(Post).filter(Post.id == _id).first()
+
+    if not _post:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=f"The post with id of {_id} was not found"
+        )
+
+    _db.delete(_post)
+    _db.commit()
