@@ -23,7 +23,7 @@ async def root() -> dict:
 
 
 @app.post("/posts", status_code=status.HTTP_201_CREATED, response_model=PostResponse)
-async def create_post(_post: PostCreate, _db: Session = Depends(get_db)) -> dict:
+async def create_post(_post: PostCreate, _db: Session = Depends(get_db)):
     """The create post endpoint
 
     Args:
