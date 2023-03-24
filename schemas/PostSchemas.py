@@ -1,6 +1,7 @@
 """Created the file containing the Posts Schemas"""
-from pydantic import BaseModel
 from datetime import datetime
+
+from pydantic import BaseModel
 
 
 class PostBase(BaseModel):
