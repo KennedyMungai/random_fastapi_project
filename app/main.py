@@ -1,6 +1,4 @@
 """The main file for the project"""
-from typing import Optional
-
 from fastapi import FastAPI
 from pydantic import BaseModel
 
@@ -10,8 +8,6 @@ from models import models
 models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
-
-# Dependency
 
 
 def get_db():
@@ -39,7 +35,7 @@ async def root() -> dict:
 
 
 @app.post("/createposts")
-async def create_posts(payload: Post) -> dict:
+async def create_posts(payload) -> dict:
     """A dummy post creator endpoint
 
     Returns:
