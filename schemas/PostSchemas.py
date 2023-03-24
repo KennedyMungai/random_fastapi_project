@@ -1,4 +1,4 @@
-"""Ceeated the file containing the Posts Schemas"""
+"""Created the file containing the Posts Schemas"""
 from pydantic import BaseModel
 
 
