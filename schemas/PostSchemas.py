@@ -33,4 +33,4 @@ class PostResponse(BaseModel):
 
     class Config:
         """The configuration for the PostResponse class"""
-        orm_model = True
+        orm_mode = True
