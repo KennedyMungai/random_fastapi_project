@@ -21,5 +21,13 @@ async def root() -> dict:
 
 
 @app.get("/sqlalchemy")
-async def test_posts(_db: Session = Depends(get_db)):
-    pass
+async def test_posts(_db: Session = Depends(get_db)) -> dict:
+    """A dummy endpoint to check for connection with the database
+
+    Args:
+        _db (Session, optional): The database session. Defaults to Depends(get_db).
+
+    Returns:
+        dict: A message to show successful execution
+    """
+    return {"Message": "MYSQL BITCHES!!!"}
