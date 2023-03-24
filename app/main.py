@@ -33,7 +33,7 @@ async def create_post(_post: CreatePost, _db: Session = Depends(get_db)):
     Returns:
         CreatePost: The created post
     """
-    _new_post = Post(id=_post.id, title=_post.title,
+    _new_post = Post(title=_post.title,
                      content=_post.content, published=_post.published)
 
     _db.add(_new_post)
