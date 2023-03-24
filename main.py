@@ -22,4 +22,6 @@ async def create_posts(payload: dict = Body(...)) -> dict:
     Returns:
         dict: A message to show successful code execution
     """
+
+    print(payload)
     return {"message": "The post has been successfully created"}
