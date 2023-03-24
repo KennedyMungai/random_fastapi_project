@@ -9,7 +9,7 @@ from db.database import Base
 class Post(Base):
     """The template for the Post table in the database"""
     __tablename__ = "posts"
-    id = Column(Integer, primary_key=True, nullable=False)
+    id = Column(Integer, primary_key=True, nullable=False, autoincrement=True)
     title = Column(String(255), nullable=False)
     content = Column(String(255), nullable=False)
     published = Column(Boolean, default=1, nullable=False)
