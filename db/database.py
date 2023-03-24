@@ -17,3 +17,9 @@ DATABASE_NAME = os.environ.get("DATABASE_NAME")
 DB_URL = f'mysql+pymysql://{DATABASE_USER}:{DATABASE_PASSWORD}@localhost/{DATABASE_NAME}'
 
 engine = create_engine(DB_URL)
+
+SessionLocal = sessionmaker(
+    autocommit=False,
+    autoflush=False,
+    bind=engine
+)
