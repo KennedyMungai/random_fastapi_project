@@ -1,5 +1,8 @@
 """The model definiition file"""
-from sqlalchemy import Column, Integer, String, Boolean
+from datetime import datetime
+
+from sqlalchemy import TIMESTAMP, Boolean, Column, Integer, String
+
 from db.database import Base
 
 
@@ -10,3 +13,4 @@ class Post(Base):
     title = Column(String(255), nullable=False)
     content = Column(String(255), nullable=False)
     published = Column(Boolean, default=True, nullable=False)
+    created_at = Column(TIMESTAMP(timezone=True), default=datetime.utcnow())
