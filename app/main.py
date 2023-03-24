@@ -42,7 +42,7 @@ async def create_post(_post: PostCreate, _db: Session = Depends(get_db)):
     return _new_post
 
 
-@app.get("/posts/{_id}")
+@app.get("/posts/{_id}", response_model=PostResponse)
 async def retrieve_one_post(_id: int, _db: Session = Depends(get_db)) -> dict:
     """The endpoint to retrieve one post by its Id
 
