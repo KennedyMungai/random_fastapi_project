@@ -40,3 +40,9 @@ async def create_post(_post: CreatePost, _db: Session = Depends(get_db)):
     _db.commit()
 
     return {"Message": "Some dumb message"}
+
+
+@app.get("/posts", status_code=status.HTTP_200_OK)
+async def retrieve_all_posts(_db: Session = Depends(get_db)) -> dict:
+    _all_posts = _db(Post).all()
+    return _all_posts
