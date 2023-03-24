@@ -6,6 +6,16 @@ from pydantic import BaseModel
 app = FastAPI()
 
 
+class Post(BaseModel):
+    """The post model
+
+    Args:
+        BaseModel (Class): The parent class
+    """
+    title: str
+    content: str
+
+
 @app.get("/")
 async def root() -> dict:
     """The root api endpoint
