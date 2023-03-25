@@ -6,7 +6,11 @@
 	],
 	"settings": {
 		"cSpell.words": [
-			"passlib"
+			"autoflush",
+			"dotenv",
+			"passlib",
+			"pymysql",
+			"sessionmaker"
 		]
 	}
 }
