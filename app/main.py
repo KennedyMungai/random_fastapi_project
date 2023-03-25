@@ -183,7 +183,19 @@ async def create_user(_new_user: UserRequest, _db: Session = Depends(get_db)):
 
 
 @app.get("/users/{_id}", response_model=UserResponse)
-async def retrieve_one_user(_id: int, _db: Session = Depends(get_db)):
+async def retrieve_one_user(_id: int, _db: Session = Depends(get_db)) -> UserResponse:
+    """An endpoint to retrieve one user
+
+    Args:
+        _id (int): The id of the user
+        _db (Session, optional): The database session. Defaults to Depends(get_db).
+
+    Raises:
+        HTTPException: A 404 is raised if the user is not found in the database
+
+    Returns:
+        UserResponse: User data formatted in the User Response schema is given back
+    """
     _user = _db.query(User).filter(User.id == _id).first()
 
     if not _user:
