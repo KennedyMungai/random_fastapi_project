@@ -1,5 +1,5 @@
 """The file that contains User Schemas"""
-from pydantic import BaseModel
+from pydantic import BaseModel, EmailStr
 
 
 class UserBase(BaseModel):
