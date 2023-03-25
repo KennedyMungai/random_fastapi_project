@@ -12,4 +12,5 @@ class UserBase(BaseModel):
     password: str
 
     class Config:
+        """The config class for the UserBase class"""
         orm_mode = True
