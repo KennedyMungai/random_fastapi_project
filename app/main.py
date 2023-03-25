@@ -7,6 +7,7 @@ from db.database import engine, get_db
 from models import models
 from models.models import Post
 from schemas.PostSchemas import PostCreate, PostResponse
+from schemas.UserSchemas import UserBase
 
 models.Base.metadata.create_all(bind=engine)
 
