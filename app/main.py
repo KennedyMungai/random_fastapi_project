@@ -5,7 +5,7 @@ from sqlalchemy.orm import Session
 
 from db.database import engine, get_db
 from models import models
-from models.models import Post
+from models.models import Post, User
 from schemas.PostSchemas import PostCreate, PostResponse
 from schemas.UserSchemas import UserBase
 
@@ -137,4 +137,9 @@ async def update_post(_id: int, _new_post: PostCreate, _db: Session = Depends(ge
 
 @app.post("/users", status_code=status.HTTP_201_CREATED)
 async def create_user(_new_user: UserBase, _db: Session = Depends(get_db)):
-    pass
+    _user = User(**_new_user.dict())
+    _db.add(_user)
+    _db.commit()
+    _db.refresh(_user)
+
+    return _user
