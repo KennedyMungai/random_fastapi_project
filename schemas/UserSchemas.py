@@ -1,4 +1,5 @@
 """The file that contains User Schemas"""
+from datetime import datetime
 from pydantic import BaseModel, EmailStr
 
 
@@ -27,6 +28,7 @@ class UserResponse(BaseModel):
         BaseModel (Class): The parent class
     """
     email: EmailStr
+    created_at: datetime
 
     class Config:
         """The config class for the UserResponse class"""
