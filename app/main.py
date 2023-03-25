@@ -1,6 +1,8 @@
 """The main file for the project"""
 from typing import List
+
 from fastapi import Depends, FastAPI, HTTPException, status
+from passlib.context import CryptContext
 from sqlalchemy.orm import Session
 
 from db.database import engine, get_db
