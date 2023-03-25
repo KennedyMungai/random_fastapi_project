@@ -7,7 +7,7 @@ from db.database import engine, get_db
 from models import models
 from models.models import Post, User
 from schemas.PostSchemas import PostCreate, PostResponse
-from schemas.UserSchemas import UserBase
+from schemas.UserSchemas import UserRequest, UserResponse
 
 models.Base.metadata.create_all(bind=engine)
 
@@ -135,8 +135,8 @@ async def update_post(_id: int, _new_post: PostCreate, _db: Session = Depends(ge
     return _post_query.first()
 
 
-@app.post("/users", status_code=status.HTTP_201_CREATED, response_model=UserBase)
-async def create_user(_new_user: UserBase, _db: Session = Depends(get_db)):
+@app.post("/users", status_code=status.HTTP_201_CREATED, response_model=UserResponse)
+async def create_user(_new_user: UserRequest, _db: Session = Depends(get_db)):
     """An endpoint to create Users
 
     Args:
