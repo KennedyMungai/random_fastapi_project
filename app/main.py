@@ -24,7 +24,11 @@ async def root() -> dict:
     return {"message": "The api works"}
 
 
-@app.post("/posts", status_code=status.HTTP_201_CREATED, response_model=PostResponse)
+@app.post(
+    "/posts",
+    status_code=status.HTTP_201_CREATED,
+    response_model=PostResponse
+)
 async def create_post(_post: PostCreate, _db: Session = Depends(get_db)):
     """The create post endpoint
 
@@ -44,7 +48,10 @@ async def create_post(_post: PostCreate, _db: Session = Depends(get_db)):
     return _new_post
 
 
-@app.get("/posts/{_id}", response_model=PostResponse)
+@app.get(
+    "/posts/{_id}",
+    response_model=PostResponse
+)
 async def retrieve_one_post(_id: int, _db: Session = Depends(get_db)) -> dict:
     """The endpoint to retrieve one post by its Id
 
@@ -66,7 +73,11 @@ async def retrieve_one_post(_id: int, _db: Session = Depends(get_db)) -> dict:
     return _post
 
 
-@app.get("/posts", status_code=status.HTTP_200_OK, response_model=List[PostResponse])
+@app.get(
+    "/posts",
+    status_code=status.HTTP_200_OK,
+    response_model=List[PostResponse]
+)
 async def retrieve_all_posts(_db: Session = Depends(get_db)):
     """An endpoint to retrieve all the posts in the database
 
@@ -80,7 +91,10 @@ async def retrieve_all_posts(_db: Session = Depends(get_db)):
     return _all_posts
 
 
-@app.delete("/posts/{_id}", status_code=status.HTTP_204_NO_CONTENT)
+@app.delete(
+    "/posts/{_id}",
+    status_code=status.HTTP_204_NO_CONTENT
+)
 async def delete_post(_id: int, _db: Session = Depends(get_db)):
     """The delet Post endpoint
 
@@ -103,7 +117,11 @@ async def delete_post(_id: int, _db: Session = Depends(get_db)):
     _db.commit()
 
 
-@app.put("/posts/{_id}", status_code=status.HTTP_200_OK, response_model=PostResponse)
+@app.put(
+    "/posts/{_id}",
+    status_code=status.HTTP_200_OK,
+    response_model=PostResponse
+)
 async def update_post(_id: int, _new_post: PostCreate, _db: Session = Depends(get_db)):
     """The update endpoint for the Post
 
@@ -135,7 +153,11 @@ async def update_post(_id: int, _new_post: PostCreate, _db: Session = Depends(ge
     return _post_query.first()
 
 
-@app.post("/users", status_code=status.HTTP_201_CREATED, response_model=UserResponse)
+@app.post(
+    "/users",
+    status_code=status.HTTP_201_CREATED,
+    response_model=UserResponse
+)
 async def create_user(_new_user: UserRequest, _db: Session = Depends(get_db)):
     """An endpoint to create Users
 
