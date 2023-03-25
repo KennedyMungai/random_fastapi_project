@@ -180,3 +180,16 @@ async def create_user(_new_user: UserRequest, _db: Session = Depends(get_db)):
     _db.refresh(_user)
 
     return _user
+
+
+@app.get("/users/{_id}")
+async def retrieve_one_user(_id: int, _db: Session = Depends(get_db)):
+    _user = _db.query(User).filter(User.id == _id).first()
+
+    if not _user:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=f"The user with id {_id} not found"
+        )
+
+    return _user
