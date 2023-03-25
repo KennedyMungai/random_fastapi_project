@@ -9,6 +9,7 @@ class UserBase(BaseModel):
     Args:
         BaseModel (Class): The parent class for the UserBase
     """
+    id: int
     email: EmailStr
     password: str
 
@@ -27,6 +28,7 @@ class UserResponse(BaseModel):
     Args:
         BaseModel (Class): The parent class
     """
+    id: int
     email: EmailStr
     created_at: datetime
 
