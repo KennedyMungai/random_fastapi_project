@@ -45,4 +45,6 @@ async def login(_user_credentials: UserLogin, _db: Session = Depends(get_db)):
     # Create a token
     # Return token
 
-    return {"Token": "Dummy token"}
+    _access_token = create_access_token({"user_id": _user.id})
+
+    return {"access_token": _access_token, "token_type": "bearer"}
