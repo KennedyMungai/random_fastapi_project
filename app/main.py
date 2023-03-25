@@ -1,10 +1,10 @@
 """The main file for the project"""
 from fastapi import FastAPI
 
-from models import models
-from routers.users import users_router
-from routers.posts import posts_router
 from db.database import engine
+from models import models
+from routers.posts import posts_router
+from routers.users import users_router
 
 models.Base.metadata.create_all(bind=engine)
 
