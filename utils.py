@@ -14,3 +14,16 @@ def password_hash(password: str) -> str:
         Str: A hash version of the password
     """
     return pwd_context.hash(password)
+
+
+def verify_password(_plain_password: str, _hashed_password: str) -> bool:
+    """A function to compare the plain password with the hashed password
+
+    Args:
+        _plain_password (str): _description_
+        _hashed_password (str): _description_
+
+    Returns:
+        bool: _description_
+    """
+    return pwd_context.verify(_plain_password, _hashed_password)
