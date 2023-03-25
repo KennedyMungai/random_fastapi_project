@@ -10,6 +10,7 @@ class PostBase(BaseModel):
     Args:
         BaseModel (Class): The parent class
     """
+    id: int
     title: str
     content: str
     published: bool = True
