@@ -8,5 +8,5 @@ class UserBase(BaseModel):
     Args:
         BaseModel (Class): The parent class for the UserBase
     """
-    email: str
+    email: EmailStr
     password: str
