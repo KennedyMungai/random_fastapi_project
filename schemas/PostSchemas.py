@@ -5,7 +5,7 @@ from pydantic import BaseModel
 
 
 class PostBase(BaseModel):
-    """The base class representing the Post daya
+    """The base class representing the Post data
 
     Args:
         BaseModel (Class): The parent class

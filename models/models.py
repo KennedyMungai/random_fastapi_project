@@ -1,4 +1,4 @@
-"""The model definiition file"""
+"""The model definition file"""
 from datetime import datetime
 
 from sqlalchemy import TIMESTAMP, Boolean, Column, Integer, String

@@ -98,7 +98,7 @@ async def retrieve_all_posts(_db: Session = Depends(get_db)):
     status_code=status.HTTP_204_NO_CONTENT
 )
 async def delete_post(_id: int, _db: Session = Depends(get_db)):
-    """The delet Post endpoint
+    """The delete Post endpoint
 
     Args:
         _id (int): The id of the Post
@@ -136,7 +136,7 @@ async def update_post(_id: int, _new_post: PostCreate, _db: Session = Depends(ge
         HTTPException: A 404 is raised if the post is not found
 
     Returns:
-        dict: A dictionary cotining a success message
+        dict: A dictionary containing a success message
     """
     _post_query = _db.query(Post).filter(Post.id == _id)
 
@@ -165,7 +165,7 @@ async def create_user(_new_user: UserRequest, _db: Session = Depends(get_db)):
 
     Args:
         _new_user (UserBase): The new user info
-        _db (Session, optional): The database comnection. Defaults to Depends(get_db).
+        _db (Session, optional): The database connection. Defaults to Depends(get_db).
 
     Returns:
         UserBase: The newly created user
