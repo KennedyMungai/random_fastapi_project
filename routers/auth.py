@@ -5,6 +5,7 @@ from sqlalchemy.orm.session import Session
 from db.database import get_db
 from models.models import User
 from schemas.UserLogin import UserLogin
+from utils import verify_password
 
 
 login_router = APIRouter(prefix="/login", tags=["Authentication"])
@@ -16,6 +17,12 @@ async def login(_user_credentials: UserLogin, _db: Session = Depends(get_db)):
         User.email == _user_credentials.email).first()
 
     if not _user:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Invalid credentials"
+        )
+
+    if not verify_password(_user_credentials.password, User.password):
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
             detail="Invalid credentials"
