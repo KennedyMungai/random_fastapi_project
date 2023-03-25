@@ -173,6 +173,7 @@ async def create_user(_new_user: UserRequest, _db: Session = Depends(get_db)):
         UserBase: The newly created user
     """
     # Hashing the password
+    _hashed_password = pwd_context.hash(_new_user.password)
 
     _user = User(**_new_user.dict())
     _db.add(_user)
