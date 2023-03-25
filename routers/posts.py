@@ -12,7 +12,7 @@ posts_router = APIRouter(prefix="/posts", tags=["Posts"])
 
 
 @posts_router.post(
-    "/posts",
+    "/",
     status_code=status.HTTP_201_CREATED,
     response_model=PostResponse
 )
