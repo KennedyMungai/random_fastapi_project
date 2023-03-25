@@ -36,7 +36,7 @@ async def create_post(_post: PostCreate, _db: Session = Depends(get_db)):
 
 
 @posts_router.get(
-    "/posts/{_id}",
+    "/{_id}",
     response_model=PostResponse
 )
 async def retrieve_one_post(_id: int, _db: Session = Depends(get_db)) -> dict:
@@ -61,7 +61,7 @@ async def retrieve_one_post(_id: int, _db: Session = Depends(get_db)) -> dict:
 
 
 @posts_router.get(
-    "/posts",
+    "/",
     status_code=status.HTTP_200_OK,
     response_model=List[PostResponse]
 )
@@ -79,7 +79,7 @@ async def retrieve_all_posts(_db: Session = Depends(get_db)):
 
 
 @posts_router.delete(
-    "/posts/{_id}",
+    "/{_id}",
     status_code=status.HTTP_204_NO_CONTENT
 )
 async def delete_post(_id: int, _db: Session = Depends(get_db)):
@@ -105,7 +105,7 @@ async def delete_post(_id: int, _db: Session = Depends(get_db)):
 
 
 @posts_router.put(
-    "/posts/{_id}",
+    "/{_id}",
     status_code=status.HTTP_200_OK,
     response_model=PostResponse
 )

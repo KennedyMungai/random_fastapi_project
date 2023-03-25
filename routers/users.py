@@ -11,7 +11,7 @@ users_router = APIRouter(prefix="/users", tags=["Users"])
 
 
 @users_router.post(
-    "/users",
+    "/",
     status_code=status.HTTP_201_CREATED,
     response_model=UserResponse
 )
@@ -38,7 +38,7 @@ async def create_user(_new_user: UserRequest, _db: Session = Depends(get_db)):
 
 
 @users_router.get(
-    "/users/{_id}",
+    "/{_id}",
     response_model=UserResponse
 )
 async def retrieve_one_user(_id: int, _db: Session = Depends(get_db)) -> UserResponse:
