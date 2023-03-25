@@ -18,7 +18,6 @@ class UserRequest(UserBase):
     Args:
         UserBase (Class): The base user type
     """
-    pass
 
 
 class UserResponse(BaseModel):
