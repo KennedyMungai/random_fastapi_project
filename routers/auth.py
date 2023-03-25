@@ -1,12 +1,11 @@
 """Stores all the authentication logic for the API"""
-from fastapi import APIRouter, Depends, status, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm.session import Session
 
 from db.database import get_db
 from models.models import User
 from schemas.UserLogin import UserLogin
 from utils import verify_password
-
 
 login_router = APIRouter(prefix="/login", tags=["Authentication"])
 
