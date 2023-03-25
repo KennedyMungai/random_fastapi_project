@@ -135,7 +135,7 @@ async def update_post(_id: int, _new_post: PostCreate, _db: Session = Depends(ge
     return _post_query.first()
 
 
-@app.post("/users", status_code=status.HTTP_201_CREATED)
+@app.post("/users", status_code=status.HTTP_201_CREATED, response_model=UserBase)
 async def create_user(_new_user: UserBase, _db: Session = Depends(get_db)):
     _user = User(**_new_user.dict())
     _db.add(_user)
