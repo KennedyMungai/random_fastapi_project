@@ -13,7 +13,7 @@ from schemas.UserSchemas import UserRequest, UserResponse
 
 models.Base.metadata.create_all(bind=engine)
 
-pwd_context = CryptContext(schemes=["bcrypt"])
+pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 app = FastAPI()
 
