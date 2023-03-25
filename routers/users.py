@@ -4,7 +4,7 @@ from sqlalchemy.orm.session import Session
 
 from db.database import get_db
 from models.models import User
-from schemas.UserSchemas import UserRequest, UserResponse
+from schemas.user_schemas import UserRequest, UserResponse
 from utils import password_hash
 
 users_router = APIRouter(prefix="/users", tags=["Users"])
