@@ -1,5 +1,5 @@
 """Stores all the authentication logic for the API"""
-from fastapi import APIRouter, Depends, status, HTTPException, Response
+from fastapi import APIRouter, Depends, status, HTTPException
 from sqlalchemy.orm.session import Session
 
 from db.database import get_db
