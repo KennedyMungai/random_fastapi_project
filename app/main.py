@@ -11,9 +11,9 @@ from models.models import Post, User
 from schemas.PostSchemas import PostCreate, PostResponse
 from schemas.UserSchemas import UserRequest, UserResponse
 
-models.Base.metadata.create_all(bind=engine)
-
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+
+models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
 
@@ -172,6 +172,8 @@ async def create_user(_new_user: UserRequest, _db: Session = Depends(get_db)):
     Returns:
         UserBase: The newly created user
     """
+    # Hashing the password
+
     _user = User(**_new_user.dict())
     _db.add(_user)
     _db.commit()
