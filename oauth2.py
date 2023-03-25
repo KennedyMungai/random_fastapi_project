@@ -3,7 +3,7 @@ import os
 from datetime import datetime, timedelta
 
 from dotenv import find_dotenv, load_dotenv
-from jose import JWTError, jwt
+from jose import jwt
 
 load_dotenv(find_dotenv())
 

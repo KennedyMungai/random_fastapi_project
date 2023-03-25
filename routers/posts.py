@@ -6,7 +6,7 @@ from sqlalchemy.orm.session import Session
 
 from db.database import get_db
 from models.models import Post
-from schemas.PostSchemas import PostCreate, PostResponse
+from schemas.post_schemas import PostCreate, PostResponse
 
 posts_router = APIRouter(prefix="/posts", tags=["Posts"])
 

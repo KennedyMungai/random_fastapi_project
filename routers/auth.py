@@ -4,7 +4,7 @@ from sqlalchemy.orm.session import Session
 
 from db.database import get_db
 from models.models import User
-from schemas.UserLogin import UserLogin
+from schemas.user_login import UserLogin
 from utils import verify_password
 
 login_router = APIRouter(prefix="/login", tags=["Authentication"])
