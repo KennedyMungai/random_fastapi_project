@@ -13,6 +13,20 @@ login_router = APIRouter(prefix="/login", tags=["Authentication"])
 
 @login_router.post("/")
 async def login(_user_credentials: UserLogin, _db: Session = Depends(get_db)):
+    """Created the login endpoint
+
+    Args:
+        _user_credentials (UserLogin): The details required for user authentication
+        _db (Session, optional): A database session. Defaults to Depends(get_db).
+
+    Raises:
+        HTTPException: A 404 is returned is not found
+        HTTPException: A 404 is returned if 
+                        the password of a found user does not match the hash stored in the database
+
+    Returns:
+        Dict: A message to show successful execution of the login in the endpoint
+    """
     _user = _db.query(User).filter(
         User.email == _user_credentials.email).first()
 
@@ -31,4 +45,4 @@ async def login(_user_credentials: UserLogin, _db: Session = Depends(get_db)):
     # Create a token
     # Return token
 
-    return {"Token": "Example token"}
+    return {"Token": "Dummy token"}
