@@ -182,7 +182,7 @@ async def create_user(_new_user: UserRequest, _db: Session = Depends(get_db)):
     return _user
 
 
-@app.get("/users/{_id}")
+@app.get("/users/{_id}", response_model=UserResponse)
 async def retrieve_one_user(_id: int, _db: Session = Depends(get_db)):
     _user = _db.query(User).filter(User.id == _id).first()
 
