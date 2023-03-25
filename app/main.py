@@ -2,7 +2,6 @@
 from typing import List
 
 from fastapi import Depends, FastAPI, HTTPException, status
-from passlib.context import CryptContext
 from sqlalchemy.orm import Session
 
 from db.database import engine, get_db
@@ -10,8 +9,7 @@ from models import models
 from models.models import Post, User
 from schemas.PostSchemas import PostCreate, PostResponse
 from schemas.UserSchemas import UserRequest, UserResponse
-
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+from utils import password_hash
 
 models.Base.metadata.create_all(bind=engine)
 
@@ -173,7 +171,7 @@ async def create_user(_new_user: UserRequest, _db: Session = Depends(get_db)):
         UserBase: The newly created user
     """
     # Hashing the password
-    _hashed_password = pwd_context.hash(_new_user.password)
+    _hashed_password = password_hash(_new_user.password)
     _new_user.password = _hashed_password
 
     _user = User(**_new_user.dict())
