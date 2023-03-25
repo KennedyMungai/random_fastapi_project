@@ -27,3 +27,8 @@ async def login(_user_credentials: UserLogin, _db: Session = Depends(get_db)):
             status_code=status.HTTP_404_NOT_FOUND,
             detail="Invalid credentials"
         )
+
+    # Create a token
+    # Return token
+
+    return {"Token": "Example token"}
