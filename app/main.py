@@ -137,6 +137,15 @@ async def update_post(_id: int, _new_post: PostCreate, _db: Session = Depends(ge
 
 @app.post("/users", status_code=status.HTTP_201_CREATED, response_model=UserBase)
 async def create_user(_new_user: UserBase, _db: Session = Depends(get_db)):
+    """An endpoint to create Users
+
+    Args:
+        _new_user (UserBase): The new user info
+        _db (Session, optional): The database comnection. Defaults to Depends(get_db).
+
+    Returns:
+        UserBase: The newly created user
+    """
     _user = User(**_new_user.dict())
     _db.add(_user)
     _db.commit()
