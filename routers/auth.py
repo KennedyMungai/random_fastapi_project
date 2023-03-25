@@ -22,7 +22,7 @@ async def login(_user_credentials: UserLogin, _db: Session = Depends(get_db)):
             detail="Invalid credentials"
         )
 
-    if not verify_password(_user_credentials.password, User.password):
+    if not verify_password(_user_credentials.password, _user.password):
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
             detail="Invalid credentials"
