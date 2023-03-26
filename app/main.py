@@ -3,9 +3,9 @@ from fastapi import FastAPI
 
 from db.database import engine
 from models import models
+from routers.auth import login_router
 from routers.posts import posts_router
 from routers.users import users_router
-from routers.auth import login_router
 
 models.Base.metadata.create_all(bind=engine)
 
