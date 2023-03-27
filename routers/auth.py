@@ -28,7 +28,7 @@ async def login(_user_credentials: OAuth2PasswordRequestForm = Depends(), _db: S
         Dict: A message to show successful execution of the login in the endpoint
     """
     _user = _db.query(User).filter(
-        User.email == _user_credentials.email).first()
+        User.email == _user_credentials.username).first()
 
     if not _user:
         raise HTTPException(
