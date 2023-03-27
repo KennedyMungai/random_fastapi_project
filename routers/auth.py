@@ -12,7 +12,10 @@ login_router = APIRouter(prefix="/login", tags=["Authentication"])
 
 
 @login_router.post("/")
-async def login(_user_credentials: OAuth2PasswordRequestForm = Depends(), _db: Session = Depends(get_db)):
+async def login(
+    _user_credentials: OAuth2PasswordRequestForm = Depends(),
+    _db: Session = Depends(get_db)
+):
     """Created the login endpoint
 
     Args:
