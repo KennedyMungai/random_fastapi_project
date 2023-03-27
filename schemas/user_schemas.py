@@ -1,5 +1,6 @@
 """The file that contains User Schemas"""
 from datetime import datetime
+from typing import Optional
 from pydantic import BaseModel, EmailStr
 
 
@@ -44,3 +45,12 @@ class Token(BaseModel):
     """
     access_token: str
     token_type: str
+
+
+class TokenData(BaseModel):
+    """Created the token data schema
+
+    Args:
+        BaseModel (Class): The parent class for Token Data
+    """
+    id: Optional[str] = None
