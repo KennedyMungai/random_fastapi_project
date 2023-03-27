@@ -20,7 +20,7 @@ posts_router = APIRouter(prefix="/posts", tags=["Posts"])
 async def create_post(
     _post: PostCreate,
     _db: Session = Depends(get_db),
-    _current_user=Depends(get_current_user)
+    _user=Depends(get_current_user)
 ):
     """The create post endpoint
 
@@ -47,8 +47,8 @@ async def create_post(
 async def retrieve_one_post(
     _id: int,
     _db: Session = Depends(get_db),
-    _user: int = Depends(get_current_user)
-) -> dict:
+    _user=Depends(get_current_user)
+) -> Post:
     """The endpoint to retrieve one post by its Id
 
     Args:
@@ -94,7 +94,7 @@ async def retrieve_all_posts(_db: Session = Depends(get_db)):
 async def delete_post(
     _id: int,
     _db: Session = Depends(get_db),
-    _user: int = Depends(get_current_user)
+    _user=Depends(get_current_user)
 ):
     """The delete Post endpoint
 
@@ -126,7 +126,7 @@ async def update_post(
     _id: int,
     _new_post: PostCreate,
     _db: Session = Depends(get_db),
-    _user: int = Depends(get_current_user)
+    _user=Depends(get_current_user)
 ):
     """The update endpoint for the Post
 
