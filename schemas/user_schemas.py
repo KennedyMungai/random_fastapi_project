@@ -34,3 +34,13 @@ class UserResponse(BaseModel):
     class Config:
         """The config class for the UserResponse class"""
         orm_mode = True
+
+
+class Token(BaseModel):
+    """A schema for the token
+
+    Args:
+        BaseModel (Class): The parent class
+    """
+    access_token: str
+    token_type: str
