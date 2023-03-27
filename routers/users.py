@@ -6,6 +6,8 @@ from db.database import get_db
 from models.models import User
 from schemas.user_schemas import UserRequest, UserResponse
 from utils import password_hash
+from oauth2 import get_current_user
+
 
 users_router = APIRouter(prefix="/users", tags=["Users"])
 
@@ -15,7 +17,11 @@ users_router = APIRouter(prefix="/users", tags=["Users"])
     status_code=status.HTTP_201_CREATED,
     response_model=UserResponse
 )
-async def create_user(_new_user: UserRequest, _db: Session = Depends(get_db)):
+async def create_user(
+        _new_user: UserRequest,
+        _db: Session = Depends(get_db),
+        _get_current_user: int = Depends(get_current_user)
+):
     """An endpoint to create Users
 
     Args:
@@ -37,7 +43,7 @@ async def create_user(_new_user: UserRequest, _db: Session = Depends(get_db)):
     return _user
 
 
-@users_router.get(
+@ users_router.get(
     "/{_id}",
     response_model=UserResponse
 )
