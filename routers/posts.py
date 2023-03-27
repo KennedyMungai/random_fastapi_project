@@ -6,6 +6,7 @@ from sqlalchemy.orm.session import Session
 
 from db.database import get_db
 from models.models import Post
+from oauth2 import get_current_user
 from schemas.post_schemas import PostCreate, PostResponse
 
 posts_router = APIRouter(prefix="/posts", tags=["Posts"])
@@ -16,7 +17,11 @@ posts_router = APIRouter(prefix="/posts", tags=["Posts"])
     status_code=status.HTTP_201_CREATED,
     response_model=PostResponse
 )
-async def create_post(_post: PostCreate, _db: Session = Depends(get_db)):
+async def create_post(
+    _post: PostCreate,
+    _db: Session = Depends(get_db),
+    _user_id: int = Depends(get_current_user)
+):
     """The create post endpoint
 
     Args:
