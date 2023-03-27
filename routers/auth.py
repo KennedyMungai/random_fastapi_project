@@ -1,5 +1,6 @@
 """Stores all the authentication logic for the API"""
 from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi.security.oauth2 import OAuth2PasswordRequestForm
 from sqlalchemy.orm.session import Session
 
 from db.database import get_db
