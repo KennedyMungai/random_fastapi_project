@@ -69,3 +69,4 @@ async def retrieve_one_user(_id: int, _db: Session = Depends(get_db)) -> UserRes
         )
 
     return _user
+    
