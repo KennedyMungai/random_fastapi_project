@@ -10,6 +10,7 @@ from sqlalchemy.orm.session import Session
 
 from db.database import get_db
 from schemas.user_schemas import TokenData
+from models.models import User
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl='login')
 
@@ -81,4 +82,8 @@ def get_current_user(
         headers={"WWW-Authenticate": "Bearer"}
     )
 
-    return verify_access_token(_token, _credentials_exception)
+    token = verify_access_token(_token, _credentials_exception)
+
+    _user = _db.query(User).filter(User.id == token.id).first()
+
+    return _user
