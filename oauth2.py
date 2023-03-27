@@ -63,7 +63,10 @@ def verify_access_token(_token: str, _credentials_exception):
     return _token_data
 
 
-def get_current_user(_token: str = Depends(oauth2_scheme), _db: Session = Depends(get_db)):
+def get_current_user(
+        _token: str = Depends(oauth2_scheme),
+        _db: Session = Depends(get_db)
+):
     """Gets the current user
 
     Args:
