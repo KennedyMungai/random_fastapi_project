@@ -89,7 +89,11 @@ async def retrieve_all_posts(_db: Session = Depends(get_db)):
     "/{_id}",
     status_code=status.HTTP_204_NO_CONTENT
 )
-async def delete_post(_id: int, _db: Session = Depends(get_db)):
+async def delete_post(
+    _id: int,
+    _db: Session = Depends(get_db),
+    _user_id: int = Depends(get_current_user)
+):
     """The delete Post endpoint
 
     Args:
@@ -116,7 +120,12 @@ async def delete_post(_id: int, _db: Session = Depends(get_db)):
     status_code=status.HTTP_200_OK,
     response_model=PostResponse
 )
-async def update_post(_id: int, _new_post: PostCreate, _db: Session = Depends(get_db)):
+async def update_post(
+    _id: int,
+    _new_post: PostCreate,
+    _db: Session = Depends(get_db),
+    _user_id: int = Depends(get_current_user)
+):
     """The update endpoint for the Post
 
     Args:
