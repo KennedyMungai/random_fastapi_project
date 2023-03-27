@@ -47,7 +47,8 @@ class Token(BaseModel):
     token_type: str
 
     class Config:
-        orm_mode=True
+        """The config class for Token"""
+        orm_mode = True
 
 
 class TokenData(BaseModel):
