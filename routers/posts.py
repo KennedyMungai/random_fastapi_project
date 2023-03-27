@@ -31,6 +31,8 @@ async def create_post(
     Returns:
         dict: A dictionary containing the created post
     """
+    print(_user_id)
+
     _new_post = Post(**_post.dict())
 
     _db.add(_new_post)
