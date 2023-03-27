@@ -59,6 +59,8 @@ def verify_access_token(_token: str, _credentials_exception):
     except JWTError as _e:
         raise _credentials_exception + " " + _e
 
+    return _token_data
+
 
 def get_current_user(_token: str = Depends(oauth2_scheme)):
     """Gets the current user
