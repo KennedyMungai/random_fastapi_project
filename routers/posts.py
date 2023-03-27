@@ -74,7 +74,10 @@ async def retrieve_one_post(
     status_code=status.HTTP_200_OK,
     response_model=List[PostResponse]
 )
-async def retrieve_all_posts(_db: Session = Depends(get_db)):
+async def retrieve_all_posts(
+    _db: Session = Depends(get_db),
+    _user=Depends(get_current_user)
+):
     """An endpoint to retrieve all the posts in the database
 
     Args:
@@ -83,7 +86,7 @@ async def retrieve_all_posts(_db: Session = Depends(get_db)):
     Returns:
         List: A list of all posts
     """
-    _all_posts = _db.query(Post).all()
+    _all_posts = _db.query(Post).filter(Post.user_id == _user.id).all()
     return _all_posts
 
 
