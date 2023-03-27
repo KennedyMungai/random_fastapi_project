@@ -8,6 +8,7 @@
 		"cSpell.words": [
 			"autoflush",
 			"dotenv",
+			"ondelete",
 			"passlib",
 			"pymysql",
 			"sessionmaker"
