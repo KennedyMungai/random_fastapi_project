@@ -6,6 +6,8 @@ from dotenv import find_dotenv, load_dotenv
 from fastapi import Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer
 from jose import JWTError, jwt
+from sqlalchemy.orm.session import Session
+from db.database import get_db
 
 from schemas.user_schemas import TokenData
 
@@ -61,7 +63,7 @@ def verify_access_token(_token: str, _credentials_exception):
     return _token_data
 
 
-def get_current_user(_token: str = Depends(oauth2_scheme)):
+def get_current_user(_token: str = Depends(oauth2_scheme), _db: Session = Depends(get_db)):
     """Gets the current user
 
     Args:
