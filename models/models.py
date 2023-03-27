@@ -1,7 +1,7 @@
 """The model definition file"""
 from datetime import datetime
 
-from sqlalchemy import TIMESTAMP, Boolean, Column, Integer, String
+from sqlalchemy import TIMESTAMP, Boolean, Column, Integer, String, ForeignKey
 
 from db.database import Base
 
@@ -14,6 +14,8 @@ class Post(Base):
     content = Column(String(255), nullable=False)
     published = Column(Boolean, default=1, nullable=False)
     created_at = Column(TIMESTAMP(timezone=True), default=datetime.utcnow())
+    user_id = Column(Integer, ForeignKey(
+        "users.id", ondelete="CASCADE"), nullable=False)
 
 
 class User(Base):
