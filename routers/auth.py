@@ -6,12 +6,16 @@ from sqlalchemy.orm.session import Session
 from db.database import get_db
 from models.models import User
 from oauth2 import create_access_token
+from schemas.user_schemas import Token
 from utils import verify_password
 
 login_router = APIRouter(prefix="/login", tags=["Authentication"])
 
 
-@login_router.post("/")
+@login_router.post(
+    "/",
+    response_model=Token
+)
 async def login(
     _user_credentials: OAuth2PasswordRequestForm = Depends(),
     _db: Session = Depends(get_db)
