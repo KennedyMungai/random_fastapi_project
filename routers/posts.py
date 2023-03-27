@@ -157,6 +157,12 @@ async def update_post(
             detail=f"The post with id of {_id} was not found"
         )
 
+    if _post.user_id != _user.id:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="You are not authorized to perform this operation"
+        )
+
     _post_query.update(_new_post.dict())
 
     _db.commit()
