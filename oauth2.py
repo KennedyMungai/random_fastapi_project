@@ -3,7 +3,7 @@ import os
 from datetime import datetime, timedelta
 
 from dotenv import find_dotenv, load_dotenv
-from jose import jwt
+from jose import JWTError, jwt
 
 from schemas.user_schemas import TokenData
 
@@ -43,10 +43,13 @@ def verify_access_token(_token: str, _credentials_exception):
     Raises:
         _credentials_exception: The exception passed in
     """
-    _payload = jwt.decode(_token, SECRET_KEY, ALGORITHM)
-    _id: str = _payload.get("user_id")
+    try:
+        _payload = jwt.decode(_token, SECRET_KEY, ALGORITHM)
+        _id: str = _payload.get("user_id")
 
-    if not _id:
+        if not _id:
+            raise _credentials_exception
+
+        _token_data = TokenData(id=_id)
+    except JWTError:
         raise _credentials_exception
-
-    _token_data = TokenData(id=_id)
