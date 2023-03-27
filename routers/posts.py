@@ -46,7 +46,11 @@ async def create_post(
     "/{_id}",
     response_model=PostResponse
 )
-async def retrieve_one_post(_id: int, _db: Session = Depends(get_db)) -> dict:
+async def retrieve_one_post(
+    _id: int,
+    _db: Session = Depends(get_db),
+    _user_id: int = Depends(get_current_user)
+) -> dict:
     """The endpoint to retrieve one post by its Id
 
     Args:
