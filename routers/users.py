@@ -20,7 +20,7 @@ users_router = APIRouter(prefix="/users", tags=["Users"])
 async def create_user(
         _new_user: UserRequest,
         _db: Session = Depends(get_db),
-        _get_current_user: int = Depends(get_current_user)
+        _get_current_user=Depends(get_current_user)
 ):
     """An endpoint to create Users
 
