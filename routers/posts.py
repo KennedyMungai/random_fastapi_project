@@ -66,6 +66,12 @@ async def retrieve_one_post(
             detail=f"A post with id {_id} was not found"
         )
 
+    if _post.user_id != _user.id:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="You are not authorized to perform this operation"
+        )
+
     return _post
 
 
