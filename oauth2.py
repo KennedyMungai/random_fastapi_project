@@ -49,7 +49,7 @@ def verify_access_token(_token: str, _credentials_exception):
         _credentials_exception: The exception passed in
     """
     try:
-        _payload = jwt.decode(_token, SECRET_KEY, ALGORITHM)
+        _payload = jwt.decode(_token, SECRET_KEY, algorithms=[ALGORITHM])
         _id: str = _payload.get("user_id")
 
         if not _id:
