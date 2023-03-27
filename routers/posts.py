@@ -20,7 +20,7 @@ posts_router = APIRouter(prefix="/posts", tags=["Posts"])
 async def create_post(
     _post: PostCreate,
     _db: Session = Depends(get_db),
-    _user_id: int = Depends(get_current_user)
+    _current_user=Depends(get_current_user)
 ):
     """The create post endpoint
 
@@ -31,9 +31,7 @@ async def create_post(
     Returns:
         dict: A dictionary containing the created post
     """
-    print(_user_id)
-
-    _new_post = Post(**_post.dict())
+    _new_post = Post(user_id=_current_user.id, **_post.dict())
 
     _db.add(_new_post)
     _db.commit()
