@@ -1,5 +1,5 @@
 """The file contains the information on the posts route"""
-from typing import List
+from typing import List, Optional
 
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm.session import Session
