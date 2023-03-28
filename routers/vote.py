@@ -1,5 +1,5 @@
 """The router file for the vote"""
-from fastapi import APIRouter, Depends, status
+from fastapi import APIRouter, Depends, status, HTTPException
 from sqlalchemy.orm.session import Session
 
 from db.database import get_db
@@ -19,3 +19,9 @@ async def vote(
     _vote_query = _db.query(Votes).filter(
         Votes.post_id == _vote.post_id, Votes.user_id == _current_user.id)
     _found_vote = _vote_query.first()
+
+    if _found_vote:
+        raise HTTPException(
+            status_code=status.HTTP_409_CONFLICT,
+            detail=f"user {_current_user.id} has already voted on the post with an id of {_vote.post_id}"
+        )
