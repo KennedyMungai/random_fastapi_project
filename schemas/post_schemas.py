@@ -3,6 +3,8 @@ from datetime import datetime
 
 from pydantic import BaseModel
 
+from user_schemas import UserResponse
+
 
 class PostBase(BaseModel):
     """The base class representing the Post data
@@ -31,6 +33,7 @@ class PostResponse(PostBase):
         BaseModel (Class): The parent class
     """
     created_at: datetime
+    owner: UserResponse
 
     class Config:
         """The configuration for the PostResponse class"""
