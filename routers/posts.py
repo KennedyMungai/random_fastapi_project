@@ -95,7 +95,8 @@ async def retrieve_all_posts(
     Returns:
         List: A list of all posts
     """
-    _all_posts = _db.query(Post).limit(limit).offset(skip * limit).all()
+    _all_posts = _db.query(Post).filter(Post.title.contains(search)).limit(
+        limit).offset(skip * limit).all()
     return _all_posts
 
 
