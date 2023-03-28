@@ -31,3 +31,16 @@ class User(Base):
     email = Column(String(255), nullable=False, unique=True)
     password = Column(String(255), nullable=False)
     created_at = Column(TIMESTAMP(timezone=True), default=datetime.utcnow())
+
+
+class Votes(Base):
+    """Created the model for the Votes table
+
+    Args:
+        Base (A function): Does something
+    """
+    __tablename__ = "votes"
+    user_id = Column(Integer, ForeignKey("user.id"),
+                     primary_key=True, nullable=False)
+    post_id = Column(Integer, ForeignKey("post.id"),
+                     primary_key=True, nullable=False)
