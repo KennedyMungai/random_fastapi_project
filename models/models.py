@@ -2,6 +2,7 @@
 from datetime import datetime
 
 from sqlalchemy import TIMESTAMP, Boolean, Column, Integer, String, ForeignKey
+from sqlalchemy.orm import relationship
 
 from db.database import Base
 
@@ -16,6 +17,7 @@ class Post(Base):
     created_at = Column(TIMESTAMP(timezone=True), default=datetime.utcnow())
     user_id = Column(Integer, ForeignKey(
         "users.id", ondelete="CASCADE"), nullable=False)
+    owner = relationship("User")
 
 
 class User(Base):
