@@ -3,7 +3,7 @@ from datetime import datetime
 
 from pydantic import BaseModel
 
-from user_schemas import UserResponse
+from .user_schemas import UserResponse
 
 
 class PostBase(BaseModel):
