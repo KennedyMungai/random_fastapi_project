@@ -15,4 +15,6 @@ async def vote(
     _db: Session = Depends(get_db),
     _current_user=Depends(get_current_user)
 ):
-    pass
+    if (_vote.direction == 1):
+        _db.query(Vote).filter(Vote.post_id == _vote.post_id,
+                               Vote.user_id == _current_user.id).first()
