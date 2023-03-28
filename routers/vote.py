@@ -17,4 +17,5 @@ async def vote(
     _current_user=Depends(get_current_user)
 ):
     _vote_query = _db.query(Votes).filter(
-        Votes.post_id == _vote.post_id, Votes.user_id == _current_user.id).first()
+        Votes.post_id == _vote.post_id, Votes.user_id == _current_user.id)
+    _found_vote = _vote_query.first()
