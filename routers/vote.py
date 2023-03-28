@@ -1,10 +1,10 @@
 """The router file for the vote"""
-from fastapi import APIRouter, status, Depends
-from schemas.vote_schemas import Vote
-from db.database import get_db
+from fastapi import APIRouter, Depends, status
 from sqlalchemy.orm.session import Session
-from oauth2 import get_current_user
 
+from db.database import get_db
+from oauth2 import get_current_user
+from schemas.vote_schemas import Vote
 
 vote_router = APIRouter(prefix='/vote', tags=['votes'])
 
