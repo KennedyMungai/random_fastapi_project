@@ -40,7 +40,7 @@ class Votes(Base):
         Base (A function): Does something
     """
     __tablename__ = "votes"
-    user_id = Column(Integer, ForeignKey("user.id"),
+    user_id = Column(Integer, ForeignKey("user.id", ondelete="CASCADE"),
                      primary_key=True, nullable=False)
-    post_id = Column(Integer, ForeignKey("post.id"),
+    post_id = Column(Integer, ForeignKey("post.id", ondelete="CASCADE"),
                      primary_key=True, nullable=False)
