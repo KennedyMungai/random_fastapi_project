@@ -84,7 +84,8 @@ async def retrieve_all_posts(
     _db: Session = Depends(get_db),
     _user=Depends(get_current_user),
     limit: int = 10,
-    skip: int = 0
+    skip: int = 0,
+    search: Optional[str]
 ):
     """An endpoint to retrieve all the posts in the database
 
