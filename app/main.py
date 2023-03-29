@@ -1,8 +1,6 @@
 """The main file for the project"""
 from fastapi import FastAPI
 
-from db.database import engine
-from models import models
 from routers.auth import login_router
 from routers.posts import posts_router
 from routers.users import users_router
