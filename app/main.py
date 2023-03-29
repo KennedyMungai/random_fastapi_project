@@ -8,6 +8,13 @@ from routers.vote import vote_router
 
 app = FastAPI()
 
+origins = [
+    "http://localhost:8000",
+    "https://localhost:8000",
+    "http://localhost",
+    "https://localhost",
+]
+
 
 @app.get("/", tags=["Root"])
 async def root() -> dict:
