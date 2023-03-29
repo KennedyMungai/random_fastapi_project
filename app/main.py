@@ -8,8 +8,6 @@ from routers.posts import posts_router
 from routers.users import users_router
 from routers.vote import vote_router
 
-models.Base.metadata.create_all(bind=engine)
-
 app = FastAPI()
 
 
