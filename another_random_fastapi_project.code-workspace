@@ -8,11 +8,14 @@
 		"cSpell.words": [
 			"autoflush",
 			"conint",
+			"DBAPI",
 			"dotenv",
 			"isouter",
 			"ondelete",
 			"passlib",
+			"poolclass",
 			"pymysql",
+			"repr",
 			"sessionmaker"
 		]
 	}
