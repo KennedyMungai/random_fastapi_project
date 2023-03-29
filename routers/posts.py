@@ -96,7 +96,7 @@ async def retrieve_all_posts(
     Returns:
         List: A list of all posts
     """
-    _all_posts = _db.query(Post, func.count(Votes.post_id).label("votes")).filter(Post.title.contains(search)).limit(
+    _all_posts = _db.query(Post, (func.count(Votes.post_id)).label("votes")).filter(Post.title.contains(search)).limit(
         limit).offset(skip * limit).all()
 
     _results = _db.query(Post).join(
