@@ -9,6 +9,7 @@
 			"autoflush",
 			"conint",
 			"dotenv",
+			"isouter",
 			"ondelete",
 			"passlib",
 			"pymysql",
