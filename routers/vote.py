@@ -20,9 +20,9 @@ async def vote(
 
     Args:
         _vote (Vote): The vote template
-        _db (Session, optional): The database session. 
+        _db (Session, optional): The database session.
                                 Defaults to Depends(get_db).
-        _current_user (_type_, optional): The user currently logged in. 
+        _current_user (_type_, optional): The user currently logged in.
                                 Defaults to Depends(get_current_user).
 
     Raises:
@@ -32,8 +32,25 @@ async def vote(
         Votes.post_id == _vote.post_id, Votes.user_id == _current_user.id)
     _found_vote = _vote_query.first()
 
-    if _found_vote:
-        raise HTTPException(
-            status_code=status.HTTP_409_CONFLICT,
-            detail=f"user {_current_user.id} has already voted on the post with an id of {_vote.post_id}"
-        )
+    if _vote.direction == 1:
+        if _found_vote:
+            raise HTTPException(
+                status_code=status.HTTP_409_CONFLICT,
+                detail=f"user {_current_user.id} has already voted on the post with an id of {_vote.post_id}"
+            )
+
+            _new_vote = Votes(post_id=_vote.post_id, user_id=_current_user.id)
+            _db.add(_new_vote)
+            _db.commit()
+
+            return {"message": "Successfully added a vote"}
+
+    else:
+        if not _found_vote:
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND,
+                detail="Vote does not exist"
+            )
+
+        _vote_query.delete()
+        _db.commit()
