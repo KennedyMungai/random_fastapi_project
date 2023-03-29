@@ -39,11 +39,11 @@ async def vote(
                 detail=f"user {_current_user.id} has already voted on the post with an id of {_vote.post_id}"
             )
 
-            _new_vote = Votes(post_id=_vote.post_id, user_id=_current_user.id)
-            _db.add(_new_vote)
-            _db.commit()
+        _new_vote = Votes(post_id=_vote.post_id, user_id=_current_user.id)
+        _db.add(_new_vote)
+        _db.commit()
 
-            return {"message": "Successfully added a vote"}
+        return {"message": "Successfully added a vote"}
 
     else:
         if not _found_vote:
