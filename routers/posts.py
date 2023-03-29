@@ -5,7 +5,7 @@ from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm.session import Session
 
 from db.database import get_db
-from models.models import Post
+from models.models import Post, Votes
 from oauth2 import get_current_user
 from schemas.post_schemas import PostCreate, PostResponse
 
@@ -98,7 +98,8 @@ async def retrieve_all_posts(
     _all_posts = _db.query(Post).filter(Post.title.contains(search)).limit(
         limit).offset(skip * limit).all()
 
-    _results_query = _db.query(Post)
+    _results_query = _db.query(Post).join(
+        Votes, Votes.post_id == Post.id, isouter=True)
 
     return _all_posts
 
