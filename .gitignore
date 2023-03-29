@@ -2,3 +2,4 @@
 __pycache__/
 requirements.txt
 random_fastapi/
+alembic_migrations/versions/
