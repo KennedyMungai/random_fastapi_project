@@ -2,6 +2,7 @@
 from typing import List, Optional
 
 from fastapi import APIRouter, Depends, HTTPException, status
+from sqlalchemy import func
 from sqlalchemy.orm.session import Session
 
 from db.database import get_db
@@ -95,11 +96,11 @@ async def retrieve_all_posts(
     Returns:
         List: A list of all posts
     """
-    _all_posts = _db.query(Post).filter(Post.title.contains(search)).limit(
+    _all_posts = _db.query(Post, func.count(Votes.post_id)).filter(Post.title.contains(search)).limit(
         limit).offset(skip * limit).all()
 
     _results_query = _db.query(Post).join(
-        Votes, Votes.post_id == Post.id, isouter=True)
+        Votes, Votes.post_id == Post.id, isouter=True).group_by(Post.id)
 
     return _all_posts
 
