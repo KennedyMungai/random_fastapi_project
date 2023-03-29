@@ -20,8 +20,10 @@ async def vote(
 
     Args:
         _vote (Vote): The vote template
-        _db (Session, optional): The database session. Defaults to Depends(get_db).
-        _current_user (_type_, optional): The user currently logged in. Defaults to Depends(get_current_user).
+        _db (Session, optional): The database session. 
+                                Defaults to Depends(get_db).
+        _current_user (_type_, optional): The user currently logged in. 
+                                Defaults to Depends(get_current_user).
 
     Raises:
         HTTPException: _description_
