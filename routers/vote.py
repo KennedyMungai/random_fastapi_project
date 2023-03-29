@@ -16,6 +16,16 @@ async def vote(
     _db: Session = Depends(get_db),
     _current_user=Depends(get_current_user)
 ):
+    """The vote endpoint
+
+    Args:
+        _vote (Vote): The vote template
+        _db (Session, optional): The database session. Defaults to Depends(get_db).
+        _current_user (_type_, optional): The user currently logged in. Defaults to Depends(get_current_user).
+
+    Raises:
+        HTTPException: _description_
+    """
     _vote_query = _db.query(Votes).filter(
         Votes.post_id == _vote.post_id, Votes.user_id == _current_user.id)
     _found_vote = _vote_query.first()
