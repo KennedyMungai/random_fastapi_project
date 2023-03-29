@@ -6,6 +6,7 @@ from models import models
 from routers.auth import login_router
 from routers.posts import posts_router
 from routers.users import users_router
+from routers.vote import vote_router
 
 models.Base.metadata.create_all(bind=engine)
 
@@ -24,3 +25,4 @@ async def root() -> dict:
 app.include_router(users_router)
 app.include_router(posts_router)
 app.include_router(login_router)
+app.include_router(vote_router)
